@@ -33,4 +33,13 @@ public class JuegoController {
 		return ResponseEntity.status(HttpStatus.OK).body(juegoResponse);
 	}
 	
+	@GetMapping("/juegob")
+	public ResponseEntity<Object> borrarJuego(@RequestParam("titulo") String titulo, HttpServletRequest request){
+		return ResponseEntity.status(HttpStatus.OK).body(juegoService.borrarJuego(titulo));
+	}
+	@PostMapping("/juegoa")
+	public ResponseEntity<Object> actualizarJuego(@RequestBody @Valid JuegoRequest juegoA, HttpServletRequest request){
+		JuegoResponse juegoResponse = juegoService.actualizarJuego(juegoA);
+		return ResponseEntity.status(HttpStatus.OK).body(juegoResponse);
+	}
 }

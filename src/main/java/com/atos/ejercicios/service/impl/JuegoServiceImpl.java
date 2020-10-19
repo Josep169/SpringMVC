@@ -5,11 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.atos.ejercicios.converter.GeneroEnumToGenero;
-import com.atos.ejercicios.converter.GeneroToGeneroDto;
-import com.atos.ejercicios.converter.JuegoRequestToJuego;
 import com.atos.ejercicios.converter.JuegoToJuegoResponse;
-import com.atos.ejercicios.converter.JuegoToJuegoResponseCmpl;
 import com.atos.ejercicios.dto.request.JuegoRequest;
 import com.atos.ejercicios.dto.response.JuegoResponse;
 import com.atos.ejercicios.dto.response.JuegoResponseCompl;
@@ -24,18 +20,15 @@ public class JuegoServiceImpl implements JuegoService {
 	@Autowired
 	JuegoRepository juegoRepository;
 
-	JuegoRequestToJuego jRTJ = new JuegoRequestToJuego();
 	JuegoToJuegoResponse jTJR = new JuegoToJuegoResponse();
-	JuegoToJuegoResponseCmpl jTJRC = new JuegoToJuegoResponseCmpl();
-	GeneroEnumToGenero gETG = new GeneroEnumToGenero();
-	GeneroToGeneroDto gTGD = new GeneroToGeneroDto();
 
 	@Autowired
 	JuegoHelper juegoHelper;
 	
 	@Override
 	public JuegoResponse agregarJuego(JuegoRequest juegoRequest) {
-		juegoHelper.existeJuego(juegoRequest);
+		Optional<Juego> juegoE = juegoRepository.findBytitle(juegoRequest.getTitulo());
+		juegoHelper.existeJuego(juegoE);
 		Juego juego = juegoHelper.convertirJuegoRequestAJuego(juegoRequest);
 		juegoRepository.save(juego);
 		return jTJR.convert(juego);
@@ -43,8 +36,26 @@ public class JuegoServiceImpl implements JuegoService {
 	
 	@Override
 	public JuegoResponseCompl verJuego(String title) {
-		Optional<Juego> juego = juegoHelper.comprobarJuego(title);
+		Optional<Juego> juego = juegoRepository.findBytitle(title);
+		juegoHelper.comprobarJuego(juego);
 		JuegoResponseCompl juegoResponse = juegoHelper.convertirJuegoAJuegoResponseCompl(juego);
 		return juegoResponse;
 	}
+
+	@Override
+	public String borrarJuego(String title) {
+		Optional<Juego> juego = juegoRepository.findBytitle(title);
+		Juego juegoE = juegoHelper.comprobarJuego(juego).get();
+		juegoRepository.deleteById(juegoE.getId());
+		return ("Juego borrado con exito");
+	}
+
+	@Override
+	public JuegoResponse actualizarJuego(JuegoRequest juegoA) {
+		Optional<Juego> juegoE = juegoRepository.findBytitle(juegoA.getTitulo());
+		juegoHelper.comprobarJuego(juegoE);
+		juegoHelper.cambiarJuego(juegoA, juegoE);
+		juegoRepository.save(juegoE.get());
+		return jTJR.convert(juegoE.get());
+		}
 }

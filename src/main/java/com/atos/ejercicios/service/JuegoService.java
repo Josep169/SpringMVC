@@ -10,4 +10,8 @@ public interface JuegoService {
 	public JuegoResponse agregarJuego(JuegoRequest gameDto);
 	
 	public JuegoResponseCompl verJuego(String title);
+	
+	public String borrarJuego(String title);
+	
+	public JuegoResponse actualizarJuego(JuegoRequest juegoA);
 }

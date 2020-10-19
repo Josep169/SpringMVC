@@ -5,11 +5,13 @@ import java.util.Date;
 import java.util.List;
 //import javax.validation.constraints.NotBlank;
 
+import javax.validation.constraints.NotBlank;
+
 import com.atos.ejercicios.enums.GeneroEnum;
 
 public class JuegoRequest {
 
-//	@NotBlank(message = "Title cant be null or empty")
+	@NotBlank(message = "Title cant be null or empty")
 	private String titulo;
 	
 	private String descripcion;
