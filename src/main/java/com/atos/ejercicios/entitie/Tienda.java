@@ -1,21 +1,18 @@
 package com.atos.ejercicios.entitie;
 
-import java.util.Date;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "GAMES")
-public class Juego {
+@Table(name = "TIENDAS")
+public class Tienda {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,18 +21,15 @@ public class Juego {
 	@Column(name = "TITLE")
 	private String title;
 	
-	@Column(name = "DESCRIPTION")
-	private String description;
+	@Column(name = "DIRECCION")
+	private String direccion;
 	
-	@Column(name = "RELEASE")
-	private Date release;
+	@Column(name = "NUMERO")
+	private Integer numero;
 	
-	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	private List<Gender> generos;
-	
-	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, mappedBy = "juego")
+	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, mappedBy = "tienda")
 	private List<Stock> stock;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -52,28 +46,20 @@ public class Juego {
 		this.title = title;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
-	public Date getRelease() {
-		return release;
+	public Integer getNumero() {
+		return numero;
 	}
 
-	public void setRelease(Date release) {
-		this.release = release;
-	}
-
-	public List<Gender> getGeneros() {
-		return generos;
-	}
-
-	public void setGeneros(List<Gender> generos) {
-		this.generos = generos;
+	public void setNumero(Integer numero) {
+		this.numero = numero;
 	}
 
 	public List<Stock> getStock() {

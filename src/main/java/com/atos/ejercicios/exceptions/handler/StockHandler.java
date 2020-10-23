@@ -17,16 +17,17 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.atos.ejercicios.dto.ErrorDto;
-import com.atos.ejercicios.exceptions.generic.JuegoKOException;
 import com.atos.ejercicios.exceptions.generic.NoContentException;
 import com.atos.ejercicios.exceptions.generic.NotFoundException;
+import com.atos.ejercicios.exceptions.generic.StockKOException;
 
 @ControllerAdvice
-public class JuegoHandlerException extends ResponseEntityExceptionHandler{
+public class StockHandler extends ResponseEntityExceptionHandler{
+	
 	@ResponseStatus(HttpStatus.OK)
-	@ExceptionHandler({JuegoKOException.class})
+	@ExceptionHandler({StockKOException.class})
 	@ResponseBody
-	public ErrorDto gameKO(HttpServletRequest request, JuegoKOException exception) {
+	public ErrorDto stockKO(HttpServletRequest request, StockKOException exception) {
 		return new ErrorDto("00", exception.getDetalle());
 	}
 	

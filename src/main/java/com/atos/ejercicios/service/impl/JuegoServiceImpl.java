@@ -58,4 +58,9 @@ public class JuegoServiceImpl implements JuegoService {
 		juegoRepository.save(juegoE.get());
 		return jTJR.convert(juegoE.get());
 		}
+
+	@Override
+	public Optional<Juego> obtenerJuego(String titulo) {
+		return juegoRepository.findBytitle(titulo);
+	}
 }

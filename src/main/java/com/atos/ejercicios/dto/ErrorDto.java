@@ -1,11 +1,11 @@
 package com.atos.ejercicios.dto;
 
-public class JuegoErrorDto {
+public class ErrorDto {
 	
 	private String code; 
 	private String message;
 	
-	public JuegoErrorDto(String code, String message) {
+	public ErrorDto(String code, String message) {
 		super();
 		this.code = code;
 		this.message = message;
