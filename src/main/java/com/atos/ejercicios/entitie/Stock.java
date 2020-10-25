@@ -24,6 +24,9 @@ public class Stock {
 	
 	@ManyToOne
 	private Juego juego;
+	
+	@ManyToOne
+	private Recibo recibo;
 
 	public Long getId() {
 		return id;

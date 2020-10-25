@@ -60,6 +60,11 @@ public class StockServiceImpl implements StockService{
 		stockRepository.save(stock);
 		return STSR.convert(stock);
 	}
+
+	@Override
+	public Optional<Stock> obtenerStock(Tienda tienda, Juego juego) {
+		return 	stockRepository.findByTiendaAndJuego(tienda, juego);
+	}
 	
 	
 

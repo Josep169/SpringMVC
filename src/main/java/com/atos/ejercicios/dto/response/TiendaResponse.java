@@ -2,7 +2,7 @@ package com.atos.ejercicios.dto.response;
 
 public class TiendaResponse {
 
-	public String titulo;
+	private String titulo;
 
 	public String getTitulo() {
 		return titulo;

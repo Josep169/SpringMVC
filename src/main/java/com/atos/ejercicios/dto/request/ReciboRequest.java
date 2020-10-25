@@ -1,12 +1,20 @@
 package com.atos.ejercicios.dto.request;
 
-public class StockRequest {
+public class ReciboRequest {
 
+	private String dni;
+	
 	private String nombreT;
 	
 	private String nombreJ;
-	
-	private Long stock;
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
 
 	public String getNombreT() {
 		return nombreT;
@@ -23,15 +31,5 @@ public class StockRequest {
 	public void setNombreJ(String nombreJ) {
 		this.nombreJ = nombreJ;
 	}
-
-	public Long getStock() {
-		return stock;
-	}
-
-	public void setStock(Long stock) {
-		this.stock = stock;
-	}
-	
-	
 	
 }
